@@ -214,7 +214,12 @@ CELERY_BEAT_SCHEDULE = {
         "task": "users.tasks.delete_old_items_and_chats",
         "schedule": crontab(hour=3, minute=0),
     },
+    "send_new_message_notifications": {
+        "task": "chat.tasks.send_new_message_notifications",
+        "schedule": crontab(minute="*/15"), # Rodar a cada 15 minutos
+    },
 }
+
 
 INSTALLED_APPS += ["django_celery_results"]
 
